@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form id = "form" name="ini form">
+        <p>nama : <input id="nama" type="text" name="teks input nama"></p>
+        <p>usia : <input id="usia" type="text" name="teks input nama"></p>
+    </form>
+    <p>gender : <input type="radio" name="gender" value="laki-laki">Pria <input type="radio" name="gender" value="wanita">wanita</p>
+    <br>
+    <button onclick="myFunction()">klik</button>
+    <p id="here">hasil</p>
+
+    <script>
+    var myFunction = () => {
+        var form = document.getElementById('nama').value
+        var age = document.getElementById('usia').value
+        var result = document.getElementById('here')
+
+        var radio = document.getElementsByName('gender')
+        radioValue = ''
+
+        for (i=0; i<radio.length; i++){
+            if(radio.checked == true){
+                radioValue = radio[i].value
+            }
+        }
+        console.log(form);
+        console.log(age);
+        console.log(radioValue[0]);
+        
+        result.innerHTML = `<b>${form}</b>
+        <b>${age}</b>`
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

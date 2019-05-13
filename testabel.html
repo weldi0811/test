@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            th,table,td {
+                border : 1px solid rgb(255, 0, 0);
+                border-collapse: collapse;}
+            td,th{ 
+                width : 150px;
+            }
+                </style>
+    
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>FORM MANUSIA</th>
+                <th>FORM HEWAN</th>
+            </tr>
+            <tr>
+                <td>nama : <input type="text" name="namaManusia" id="namaManusia"></td>
+                <td>nama : <input type="text" name="namaHewan" id="namaHewan"></td>
+            </tr>
+            <tr>
+                <td>usia : <input type="number" name="usiaManusia" id="umurManusia"></td>
+                <td>usia : <input type="number" name="usiaHewan" id="umurHewan"></td>    
+            </tr>
+            <tr>
+                <td>sex : <input type="radio" name="sexManusia" value="male">Male <input type="radio" name="sexManusia" value="female">Female</td>
+                <td>sex : <input type="radio" name="sexHewan" value="male">Male <input type="radio" name="sexHewan" value="female">Female</td>
+            </tr>
+            <tr>
+                <td>pekerjaan : <select id="ddMans">
+                    <option value = "dokter">dokter</option>
+                    <option value = "penjahat">penjahat</option>
+                    <option value = "polisi">polisi</option>
+                </select></td>
+                <td>jenis : <select id="ddHewan">
+                    <option value = "liar">Liar</option>
+                    <option value = "Jinak">Jinak</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td> <button type="button" id="tambahManusia" style="width: 75px;" onclick="tambahManusia()">tambahkan</button></td>
+                <td> <button type="button" id="tambahHewan" style="width: 75px;" onclick="tambahHewan()">tambahkan</button></td>
+            </tr>
+    </table>
+<BR>
+<BR>
+<BR>
+    <table>
+            <thead>
+                <tr>
+                    <th>Data Manusia</th>  
+                    <th>Data Hewan</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Umur</th>
+                                <th>Kelamin</th>
+                                <th>Pekerjaan</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "mans">
+    
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama</th>
+                                <th>Umur</th>
+                                <th>Kelamin</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "hews">
+    
+                        </tbody>
+    
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+</thead>
+</body>
+<script>
+
+var arrMans = [], arrHewan = []
+
+var tambahManusia = () => {
+    var namaMans = document.getElementById('namaManusia').value
+    var umurMans = document.getElementById('umurManusia').value
+    var radioMans = document.getElementsByName('sexManusia')
+    var dropdownM = document.getElementById("ddMans");
+    var sexMans = ''
+    for (var i = 0; i< radioMans.length; i++){
+        if(radioMans[i].checked == true){
+            sexMans = radioMans[i].value
+        }
+    }
+    var ddMans = dropdownM.options[dropdownM.selectedIndex].text;
+
+    arrMans.push({
+        nama : namaMans,
+        age : umurMans,
+        gender : sexMans,
+        job : ddMans
+    })
+
+    show(arrMans, 'mans')
+  
+}
+var tambahHewan = () => {
+    var namaHewan = document.getElementById('namaHewan').value
+    var umurHewan = document.getElementById('umurHewan').value
+    var radioHewan = document.getElementsByName('sexHewan')
+    var dropdownH = document.getElementById("ddHewan");
+    var sexHewan = ''
+    for (var i = 0; i< radioHewan.length; i++){
+        if(radioHewan[i].checked == true){
+            sexHewan = radioHewan[i].value
+        }
+    }
+    var ddHewan = dropdownH.options[dropdownH.selectedIndex].text;
+    
+    arrHewan.push({
+        nama : namaHewan,
+        age : umurHewan,
+        gender : sexHewan,
+        job : ddHewan
+    })
+
+    show(arrHewan, 'hews')
+}
+
+var show = (arrei, target) =>{
+    var list = ''
+
+    for(var i = 0; i < arrei.length; i++){
+        list += `
+        <tr>
+            <td>${arrei[i].nama}</td>
+            <td>${arrei[i].age}</td>
+            <td>${arrei[i].gender}</td>
+            <td>${arrei[i].job}</td>
+        </tr>
+        `
+    }
+
+    document.getElementById(`${target}`).innerHTML = list;
+}
+</script>
+</html>
